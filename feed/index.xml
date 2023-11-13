@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Community.Defiance</title>
+	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>all news for you</description>
+	<lastBuildDate>Mon, 13 Nov 2023 14:42:08 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.1</generator>
+
+<image>
+	<url>/wp-content/uploads/2023/11/cropped-Community.Defiance-32x32.png</url>
+	<title>Community.Defiance</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>System Design Basics: Navigating the World of CDN</title>
+		<link>/system-design-basics-navigating-the-world-of-cdn/</link>
+					<comments>/system-design-basics-navigating-the-world-of-cdn/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 13 Nov 2023 14:41:51 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/?p=42</guid>
+
+					<description><![CDATA[A Content Delivery Network (CDN) is a distributed network of servers strategically located across various geographical locations to deliver web content, such as images, videos, and other static assets, more efficiently to users. The primary purpose of a CDN is to reduce latency and improve the overall performance of web applications by serving content from ... <a title="System Design Basics: Navigating the World of CDN" class="read-more" href="/system-design-basics-navigating-the-world-of-cdn/" aria-label="More on System Design Basics: Navigating the World of CDN">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p>A Content Delivery Network (CDN) is a distributed network of servers strategically located across various geographical locations to deliver web content, such as images, videos, and other static assets, more efficiently to users. The primary purpose of a CDN is to reduce latency and improve the overall performance of web applications by serving content from the server nearest to the user. CDNs can also help improve reliability, availability, and security of web applications.</p>
+<h2 data-selectable-paragraph="">What will we cover?</h2>
+<p data-selectable-paragraph="">
+<div>· How CDNs work?</div>
+<p>&nbsp;</p>
+<div>∘ Key terminology and concepts</div>
+<div>· Benefits of using a CDN</div>
+<div>· CDN Architecture</div>
+<div>∘ Points of Presence (PoPs) and Edge Servers</div>
+<div>∘ CDN Routing and Request Handling</div>
+<div>∘ Caching Mechanisms</div>
+<div>· CDN Network Topologies</div>
+<p>&nbsp;</p>
+<blockquote>
+<p data-selectable-paragraph="">Check Grokking the System Design Interview for a list of common system design interview questions and basics concepts.</p>
+</blockquote>
+<p>&nbsp;</p>
+<div><a href="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-YMLeO363ouMblrzArvbuaA.webp"><img fetchpriority="high" decoding="async" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-YMLeO363ouMblrzArvbuaA.webp" width="694" height="548" border="0" data-original-height="548" data-original-width="694" /></a></div>
+<p>How CDNs work?</p>
+<p data-selectable-paragraph="">When a user requests content from a web application, the request is routed to the nearest CDN server (also known as an edge server) based on factors such as network latency and server load. The edge server then checks if the requested content is already cached. If it is, the content is served directly from the cache; otherwise, the edge server fetches the content from the origin server, caches it, and serves it to the user. Subsequent requests for the same content can then be served from the cache, reducing latency and offloading traffic from the origin server.</p>
+<h2 data-selectable-paragraph="">Key terminology and concepts</h2>
+<p data-selectable-paragraph="">1. Point of Presence (PoP): A PoP is a physical location where CDN servers are deployed, typically in data centers distributed across various geographical locations. PoPs are strategically placed close to end-users to minimize latency and improve content delivery performance.</p>
+<p data-selectable-paragraph="">2. Edge Server: An edge server is a CDN server located at a PoP, responsible for caching and delivering content to end-users. These servers store cached copies of the content, reducing the need to fetch data from the origin server.</p>
+<p data-selectable-paragraph="">3. Origin Server: The origin server is the primary server where the original content is stored. CDNs fetch content from the origin server and cache it on edge servers for faster delivery to end-users.</p>
+<p data-selectable-paragraph="">4. Cache Warming: Cache warming is the process of preloading content into the edge server’s cache before it is requested by users, ensuring that the content is available for fast delivery when it is needed.</p>
+<p data-selectable-paragraph="">5. Time to Live (TTL) : TTL is a value that determines how long a piece of content should be stored in the cache before it is considered stale and needs to be refreshed from the origin server.</p>
+<p data-selectable-paragraph="">6. Anycast: Anycast is a network routing technique used by CDNs to direct user requests to the nearest available edge server, based on the lowest latency or the shortest network path.</p>
+<p data-selectable-paragraph="">7. Content Invalidation: Content invalidation is the process of removing or updating cached content when the original content on the origin server changes, ensuring that end-users receive the most up-to-date version of the content.</p>
+<p data-selectable-paragraph="">8. Cache Purging: Cache purging is the process of forcibly removing content from the edge server’s cache, usually triggered manually or automatically when specific conditions are met.</p>
+<h1 data-selectable-paragraph="">Benefits of using a CDN</h1>
+<p data-selectable-paragraph="">CDNs play a crucial role in enhancing the performance, reliability, and security of modern web applications. By serving content from geographically distributed edge servers, CDNs can provide users with a fast and seamless experience, while reducing load on origin servers and protecting against security threats. Here are the top benefits of using CDNs:</p>
+<p data-selectable-paragraph="">1. Reduced latency: By serving content from geographically distributed edge servers, CDNs reduce the time it takes for content to travel from the server to the user, resulting in faster page load times and improved user experience.</p>
+<p data-selectable-paragraph="">2. Improved performance: CDNs can offload static content delivery from the origin server, freeing up resources for dynamic content generation and reducing server load. This can lead to improved overall performance for web applications.</p>
+<p data-selectable-paragraph="">3. Enhanced reliability and availability: With multiple edge servers in different locations, CDNs can provide built-in redundancy and fault tolerance. If one server becomes unavailable, requests can be automatically rerouted to another server, ensuring continuous content delivery.</p>
+<p data-selectable-paragraph="">4. Scalability: CDNs can handle sudden traffic spikes and large volumes of concurrent requests, making it easier to scale web applications to handle growing traffic demands.</p>
+<p data-selectable-paragraph="">5. Security: Many CDNs offer additional security features, such as DDoS protection, Web Application Firewalls (WAF), and SSL/TLS termination at the edge, helping to safeguard web applications from various security threats.</p>
+<h1 data-selectable-paragraph="">CDN Architecture</h1>
+<h2 data-selectable-paragraph="">Points of Presence (PoPs) and Edge Servers</h2>
+<p data-selectable-paragraph="">A Point of Presence (PoP) is a physical location containing a group of edge servers within the CDN’s distributed network. PoPs are strategically situated across various geographical regions to minimize the latency experienced by users when requesting content. Each PoP typically consists of multiple edge servers to provide redundancy, fault tolerance, and load balancing.</p>
+<p data-selectable-paragraph="">Edge servers are the servers within a PoP that store cached content and serve it to users. When a user makes a request for content, the request is directed to the nearest edge server, which either serves the content from its cache or fetches it from the origin server and then caches it for future requests. By serving content from the geographically nearest server, CDNs can significantly reduce latency and improve the overall user experience.</p>
+<h2 data-selectable-paragraph="">CDN Routing and Request Handling</h2>
+<p data-selectable-paragraph="">CDN routing is the process of directing user requests to the most suitable edge server. Routing decisions are typically based on factors such as network latency, server load, and the user’s geographical location. Various techniques can be employed to determine the optimal edge server for handling a request, including:</p>
+<ul>
+<li data-selectable-paragraph="">Anycast Routing: In anycast routing, multiple edge servers share a single IP address. When a user sends a request to that IP address, the network’s routing system directs the request to the nearest edge server based on network latency or the number of hops. This approach helps ensure that requests are automatically routed to the most appropriate server.</li>
+<li data-selectable-paragraph="">DNS-based Routing: With DNS-based routing, when a user requests content, the CDN’s DNS server responds with the IP address of the most suitable edge server. This approach can take into account factors such as geographical proximity and server load to select the best edge server for handling the request.</li>
+<li data-selectable-paragraph="">GeoIP-based Routing: In this approach, the user’s geographical location is determined based on their IP address. The request is then directed to the nearest edge server in terms of geographical distance, which often corresponds to lower network latency.</li>
+</ul>
+<h2 data-selectable-paragraph="">Caching Mechanisms</h2>
+<p data-selectable-paragraph="">Caching is a crucial component of CDN architecture. Edge servers cache content to reduce latency and offload traffic from the origin server. Various caching mechanisms can be employed to determine what content is stored, when it is updated, and when it should be removed from the cache. Some common caching mechanisms include:</p>
+<ul>
+<li data-selectable-paragraph="">Time-to-Live (TTL): TTL is a value set by the origin server that determines how long a piece of content should be stored in the cache before it is considered stale and needs to be fetched again from the origin server.</li>
+<li data-selectable-paragraph="">Cache Invalidation: Cache invalidation is the process of removing content from the cache before its TTL expires. This is typically done when content is updated or deleted on the origin server and needs to be reflected immediately in the CDN.</li>
+<li data-selectable-paragraph="">Cache Control Headers: Cache control headers are used by the origin server to provide instructions to the CDN regarding caching behavior. These headers can dictate the cacheability of content, its TTL, and other caching-related settings.</li>
+</ul>
+<h1 data-selectable-paragraph="">CDN Network Topologies</h1>
+<p data-selectable-paragraph="">CDN network topologies describe the structure and organization of the CDN’s distributed network. Different topologies can be employed to optimize content delivery based on factors such as performance, reliability, and cost. Some common CDN network topologies include:</p>
+<ul>
+<li data-selectable-paragraph="">Flat Topology: In a flat topology, all edge servers in the CDN are directly connected to the origin server. This approach can be effective for smaller CDNs, but may not scale well as the network grows.</li>
+<li data-selectable-paragraph="">Hierarchical Topology: In a hierarchical topology, edge servers are organized into multiple tiers, with each tier being responsible for serving content to the tier below it. This approach can improve scalability by distributing the load among multiple levels of servers and reducing the number of direct connections to the origin server.</li>
+<li data-selectable-paragraph="">Mesh Topology: In a mesh topology, edge servers are interconnected, allowing them to share content and load with each other. This approach can enhance the redundancy and fault tolerance of the CDN, as well as improve content delivery performance by reducing the need to fetch content from the origin server.</li>
+<li data-selectable-paragraph="">Hybrid Topology: A hybrid topology combines elements from various topologies to create an optimized CDN architecture tailored to specific needs. For example, a CDN could use a hierarchical structure for serving static content, while employing a mesh topology for dynamic content delivery.</li>
+</ul>
+<h1 data-selectable-paragraph="">Summary</h1>
+<p data-selectable-paragraph="">CDN architecture involves the strategic placement of PoPs and edge servers, efficient routing and request handling mechanisms, effective caching strategies, and the appropriate selection of network topologies to optimize content delivery. By considering these factors, CDNs can provide significant improvements in latency, performance, reliability, and security for web applications.</p>
+<p data-selectable-paragraph="">Take a look at Grokking the System Design Interview for system design interview questions. To learn software architecture and practice advanced system design interview questions take a look at Grokking the Advanced System Design Interview.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/system-design-basics-navigating-the-world-of-cdn/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Designer Survival Guide In The Coming Era Of AI, ChatGPT and Midjourney</title>
+		<link>/designer-survival-guide-in-the-coming-era-of-ai-chatgpt-and-midjourney/</link>
+					<comments>/designer-survival-guide-in-the-coming-era-of-ai-chatgpt-and-midjourney/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 02 Nov 2023 14:40:05 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/?p=40</guid>
+
+					<description><![CDATA[Dear designers and futurists, I know this time is not like any other time. I am sharing my experience and thoughts on the use of AI in design, gathered from all the experts I have met in this industry. &#160; Thank you for reading. I am sure there will be something exciting to take away ... <a title="Designer Survival Guide In The Coming Era Of AI, ChatGPT and Midjourney" class="read-more" href="/designer-survival-guide-in-the-coming-era-of-ai-chatgpt-and-midjourney/" aria-label="More on Designer Survival Guide In The Coming Era Of AI, ChatGPT and Midjourney">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p>Dear designers and futurists, I know this time is not like any other time. I am sharing my experience and thoughts on the use of AI in design, gathered from all the experts I have met in this industry.</p>
+<p>&nbsp;</p>
+<div><a href="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-RDxV8zXlU5TteIX1KhRXuQ.webp"><img decoding="async" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-RDxV8zXlU5TteIX1KhRXuQ.webp" width="800" height="800" border="0" data-original-height="800" data-original-width="800" /></a></div>
+<p>Thank you for reading. I am sure there will be something exciting to take away in the end.After spending more than a decade in the design industry, my fascination with AI generative tools grew exponentially since 2015 with the release of DeepDream,</p>
+<p>a computer vision program by Google. Back then, nobody worried about whether this program would replace artists — as the images that DeepDream created were far from being commercially viable or aesthetically appealing.However, things quickly changed in 2018 when some fascinating work was done with GANs (Generative Adversarial Networks). Christie’s sold an AI-generated portrait for $432,500, beating estimates of $10,000, making history in the process. The portrait was beautifully done and almost looked like a real piece of art.</p>
+<p>Around that time, designers, artists, and painters began to express concerns about how powerful AI tools could become and how secure their jobs would be.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bchhlTKL6b0YZeD-kJDGEg.png 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*bchhlTKL6b0YZeD-kJDGEg.png 640w, https://miro.medium.com/v2/resize:fit:720/1*bchhlTKL6b0YZeD-kJDGEg.png 720w, https://miro.medium.com/v2/resize:fit:750/1*bchhlTKL6b0YZeD-kJDGEg.png 750w, https://miro.medium.com/v2/resize:fit:786/1*bchhlTKL6b0YZeD-kJDGEg.png 786w, https://miro.medium.com/v2/resize:fit:828/1*bchhlTKL6b0YZeD-kJDGEg.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*bchhlTKL6b0YZeD-kJDGEg.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*bchhlTKL6b0YZeD-kJDGEg.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-bchhlTKL6b0YZeD-kJDGEg-300x181.png" alt="" width="700" height="422" /></picture></div>
+</div><figcaption data-selectable-paragraph="">“Edmond de Belamy” sold at Christie’s in New York City on Thursday.Timothy A. Clary | Getty Images</figcaption></figure>
+<p data-selectable-paragraph="">The question also haunted me over and over: as a designer and a creative worker, would I be replaced by a robot one day? And if that happened, what should I do?</p>
+<p data-selectable-paragraph="">In 2018, the Design and A.I Lab of Tongji University released the Design Artificial Design Report which was read by more than 1 million people. The viewpoints expressed in the report are not just about how machines can replace human designers, but also about the dialectical relationship between design as a discipline of humanities, cultures, societies, and imagination and the evolution of machine intelligence.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VInlDNCyUr0EuR-0IPbYug.jpeg 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*VInlDNCyUr0EuR-0IPbYug.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*VInlDNCyUr0EuR-0IPbYug.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*VInlDNCyUr0EuR-0IPbYug.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*VInlDNCyUr0EuR-0IPbYug.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*VInlDNCyUr0EuR-0IPbYug.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*VInlDNCyUr0EuR-0IPbYug.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*VInlDNCyUr0EuR-0IPbYug.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img loading="lazy" decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-VInlDNCyUr0EuR-0IPbYug-300x169.jpeg" alt="" width="700" height="394" /></picture></div>
+</div><figcaption data-selectable-paragraph="">Design Artificial Design Report 2018, A.I Lab of Tongji University</figcaption></figure>
+<p data-selectable-paragraph="">I was deeply inspired by this report and had the opportunity to meet the founder of Design and A.I Lab of Tongji University, Dr. Ling Fan, the following year. In 2019, he visited San Francisco with the Lab’s 3rd Design Artificial Design Report, and I had the honor of organizing the conference and sharing this amazing report with more than 200 people in San Francisco.</p>
+<p data-selectable-paragraph=""><em>If all of the above was justsome “fun moments,” the release of Chatgpt and Midjourney are truly game-changing moments.</em></p>
+<p data-selectable-paragraph="">But don’t be afraid, designers and artists. I have put together some of my thoughts after discussing them with amazing people in the creative industry, and I’m sure it will be helpful for our current situation, whether it’s frustrating or exciting.</p>
+<p data-selectable-paragraph="">Let’s take a moment to reflect on 200 years ago.</p>
+<p data-selectable-paragraph="">Can you imagine how shocked the art industry was when photography technology was invented in 1822? Soon, cameras replaced many skilled painters and artists who drew portraits and documented events. Many of them lost their jobs to this tiny black box. Yet, it also creates 100 times more jobs, such as photography, art director, commercial producer, and the entire film industry in the following 200 years and pushed our art industry into a new era.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bWhkNt6H_lL__3Hhbs-a5w.png 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*bWhkNt6H_lL__3Hhbs-a5w.png 640w, https://miro.medium.com/v2/resize:fit:720/1*bWhkNt6H_lL__3Hhbs-a5w.png 720w, https://miro.medium.com/v2/resize:fit:750/1*bWhkNt6H_lL__3Hhbs-a5w.png 750w, https://miro.medium.com/v2/resize:fit:786/1*bWhkNt6H_lL__3Hhbs-a5w.png 786w, https://miro.medium.com/v2/resize:fit:828/1*bWhkNt6H_lL__3Hhbs-a5w.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*bWhkNt6H_lL__3Hhbs-a5w.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*bWhkNt6H_lL__3Hhbs-a5w.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img loading="lazy" decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-bWhkNt6H_lL__3Hhbs-a5w-300x219.png" alt="" width="700" height="511" /></picture></div>
+</div><figcaption data-selectable-paragraph=""></figcaption></figure>
+<p data-selectable-paragraph="">We saw a blooming of modern art movements:</p>
+<p data-selectable-paragraph="">Impressionism (1870- 1880)</p>
+<p data-selectable-paragraph="">Post-impressionism (1886–1904)</p>
+<p data-selectable-paragraph="">Fauvism (1905–1907)</p>
+<p data-selectable-paragraph="">Expressionism (1905–1907</p>
+<p data-selectable-paragraph="">Cubism (1908- 1914)</p>
+<p data-selectable-paragraph="">Futurism (1909–1944)</p>
+<p data-selectable-paragraph="">Dadaism (1916–1924)</p>
+<p data-selectable-paragraph="">Surrealism (1924–1950)</p>
+<p data-selectable-paragraph="">Pop (1950-)</p>
+<p data-selectable-paragraph="">As you name it.</p>
+<p data-selectable-paragraph="">Yes, cameras took the job of artists to transform images from the world onto canvas. However, artists began to use this tool to create something more abstract, poetic, spiritual, and ultimately, the technology of photography liberated humans from the cage of reality and started a journey to imagination and humanity.</p>
+<p data-selectable-paragraph="">The same is happening today with ChatGPT, Midjourney, and other AI tools.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*HMCCJ4nyDlChRe8XCZp8PQ.png 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*HMCCJ4nyDlChRe8XCZp8PQ.png 640w, https://miro.medium.com/v2/resize:fit:720/1*HMCCJ4nyDlChRe8XCZp8PQ.png 720w, https://miro.medium.com/v2/resize:fit:750/1*HMCCJ4nyDlChRe8XCZp8PQ.png 750w, https://miro.medium.com/v2/resize:fit:786/1*HMCCJ4nyDlChRe8XCZp8PQ.png 786w, https://miro.medium.com/v2/resize:fit:828/1*HMCCJ4nyDlChRe8XCZp8PQ.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*HMCCJ4nyDlChRe8XCZp8PQ.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*HMCCJ4nyDlChRe8XCZp8PQ.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img loading="lazy" decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-HMCCJ4nyDlChRe8XCZp8PQ-300x150.png" alt="" width="700" height="352" /></picture></div>
+</div><figcaption data-selectable-paragraph=""></figcaption></figure>
+<p data-selectable-paragraph="">I know how powerful ChatGPT seems and how silly it can make me feel sometimes. The arts created with Midjourney are incredibly beautiful, and I love them so much that I almost cry. However, I’m also scared of how this tool could fit into our workflow and replace many of us. I do believe that this day is not far away, it could be next year or even next month.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*5XHSk9XTJ9BLbgL9mKTX3w.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img loading="lazy" decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-5XHSk9XTJ9BLbgL9mKTX3w-300x169.jpeg" alt="" width="700" height="395" /></picture></div>
+</div><figcaption data-selectable-paragraph=""></figcaption></figure>
+<h1 data-selectable-paragraph="">But if we use it well, it could empower us with a power we could never have imagined, and this could be the most exciting moment for all creative people.</h1>
+<p data-selectable-paragraph="">When Adobe Photoshop and 3D rendering programs were first released, they caused panic and faced resistance, but within a year or two, they became common tools.</p>
+<p data-selectable-paragraph="">AI is no different — it is still just a tool, and those who are skilled and powerful don’t have to worry about AI replacing them. In fact, it will become a boost for the entire industry.</p>
+<figure>
+<div tabindex="0" role="button">
+<div><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 1400w" type="image/webp" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" /><source srcset="https://miro.medium.com/v2/resize:fit:640/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*l1UptAVFmTxVfYfZAtrkeA.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" data-test="" /><img loading="lazy" decoding="async" class="ak ads adt c" role="presentation" src="https://documentum-demo-dev.basf.com/wp-content/uploads/2023/04/1-l1UptAVFmTxVfYfZAtrkeA-300x169.jpeg" alt="" width="700" height="394" /></picture></div>
+</div><figcaption data-selectable-paragraph="">Midjourney generate designs</figcaption></figure>
+<p data-selectable-paragraph="">However, designers who only know how to “make things pretty” are at a greater risk. AI, especially painting AI like Midjourney, excels at creating beautiful drawings.</p>
+<p data-selectable-paragraph="">In AI testings, it has been found that the performance in terms of emotions and details are still bit poor. Even with a detailed prompt, the resulting picture still has a sense of patchwork.</p>
+<p data-selectable-paragraph="">For instance, if AI were to draw a room and convey a mother’s love for her daughter through the placement of items, the degree of use, and other factors, it would struggle to tell the story effectively. AI cannot create entirely new and unique things like an H.G. Giger creation, in my understanding. The area where designers surpass AI is not in their ability to draw well, which is the most fundamental aspect. The truly valuable things for human designers are our humanity: empathy, imagination, and creativity.</p>
+<h1 data-selectable-paragraph="">What will happen to us? What shall we do?</h1>
+<p data-selectable-paragraph="">I believe that soon AI tools will liberate our hands. As designers, we will begin a new round of competition among brains and creativity</p>
+<p data-selectable-paragraph="">AI will impact the design and creative industry at all levels, and the most vulnerable area is commercial illustration, which can be easily learned. However, all aspects, including UI, original painting, 3D modeling, and more, will also be affected.</p>
+<p data-selectable-paragraph="">The actions for designers to take are to learn more, learn fast, and learn everything. To absorb and maintain enthusiasm for things, read books, watch documentaries, and learn about history, the military, and other areas of knowledge.</p>
+<p data-selectable-paragraph="">In the next three to five years, there may not be as many low-end entrepreneurs because if their output cannot keep up with AI, they may easily be eliminated by the industry.</p>
+<p data-selectable-paragraph="">AI, such as ChatGPT, is currently partially free. However, as it becomes more integrated into infrastructure in the future, it is likely that commercial companies will have to pay higher fees, and the cost comparison between AI and labor will dynamically change. Many big tech companies are researching how AI can run through their workflows. If it becomes mature enough, a batch of layoffs may occur to reduce costs and increase efficiency.</p>
+<p data-selectable-paragraph="">Not only designers, but programming, copywriting, and other industries will also be impacted. However, from another perspective, if there is creativity, it may be an era in which ideas can be better realized.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/designer-survival-guide-in-the-coming-era-of-ai-chatgpt-and-midjourney/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Little celebrities on campus who are changing college life &#124; Written by Reed Zura &#124; Starship Technologies</title>
+		<link>/little-celebrities-on-campus-who-are-changing-college-life-written-by-reed-zura-starship-technologies/</link>
+					<comments>/little-celebrities-on-campus-who-are-changing-college-life-written-by-reed-zura-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 05 Jun 2023 16:03:08 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/index.php/2023/06/05/little-celebrities-on-campus-who-are-changing-college-life-written-by-reed-zura-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] Oregon State University&#8217;s spaceship robot, next &#8220;Mother — Ship&#8221; Imagine this. Step onto a college campus and you&#8217;ll see futuristic-looking robots zipping around in the midst of the hustle and bustle. If you look closely you will see that it is one of our space robots busy making deliveries. Our bots are not only ... <a title="Little celebrities on campus who are changing college life &#124; Written by Reed Zura &#124; Starship Technologies" class="read-more" href="/little-celebrities-on-campus-who-are-changing-college-life-written-by-reed-zura-starship-technologies/" aria-label="More on Little celebrities on campus who are changing college life &#124; Written by Reed Zura &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<div>
+<div class="fw fx fy fz ga">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gb gc gd ge gf ab">
+<div>
+<div class="ab gg">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gh gi bx gj gk">
+<div class="l go"><img decoding="async" alt="Lead shift" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/1*3i5gCPQHCsONWlfcf8mcUw.jpeg" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="gp ab go">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gq gr bx gj gs">
+<div class="l go"><img decoding="async" alt="starship technologies" class="l ec bx bq gt cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figure class="lf lg lh li lj lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld le"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ajmBSqNjj2W5__QyoggjyQ.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*ajmBSqNjj2W5__QyoggjyQ.png 640w, https://miro.medium.com/v2/resize:fit:720/1*ajmBSqNjj2W5__QyoggjyQ.png 720w, https://miro.medium.com/v2/resize:fit:750/1*ajmBSqNjj2W5__QyoggjyQ.png 750w, https://miro.medium.com/v2/resize:fit:786/1*ajmBSqNjj2W5__QyoggjyQ.png 786w, https://miro.medium.com/v2/resize:fit:828/1*ajmBSqNjj2W5__QyoggjyQ.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*ajmBSqNjj2W5__QyoggjyQ.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*ajmBSqNjj2W5__QyoggjyQ.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="An image of a Starship robot next to a white car with decals that say "Starship" and "Hungry?"Delivering to Badger” makes the white car look like a spaceship delivery robot" class="bg lp lq c" width="700" height="525" loading="eager"/></picture></div>
+</div><figcaption class="lr ls lt lc ld lu lv be b bf z hb">Oregon State University&#8217;s spaceship robot, next &#8220;Mother — Ship&#8221;</figcaption></figure>
+<p id="de0a" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">Imagine this. Step onto a college campus and you&#8217;ll see futuristic-looking robots zipping around in the midst of the hustle and bustle. If you look closely you will see that it is one of our space robots busy making deliveries. Our bots are not only revolutionizing the way students dine on campus, but they&#8217;re also winning the hearts of students and becoming true campus celebrities.</p>
+<p id="1371" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">Let&#8217;s start with Henry Banning of Oregon State University. He is a student who took his love for spaceship robots to the next level. He transformed his car into what he aptly named &#8220;Starship Mobile&#8221; as a wonderful tribute to our service. Covered in bright Starship decals, his car attracts attention and brings smiles wherever he goes. As Henry says, &#8220;I kept seeing them around campus and thought, &#8216;Of course I could do that, that would be cool!'&#8221;</p>
+<figure class="mu mv mw mx my lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld le"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*DYhdEkXq_LFsq3sdH2uXyQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="The Starship delivery robot next to Henry's car is dressed up like a larger version of the delivery robot" class="bg lp lq c" width="700" height="525" loading="lazy"/></picture></div>
+</div><figcaption class="lr ls lt lc ld lu lv be b bf z hb">Spaceship Robot Next Henry&#8217;s Spaceship — Mobile!</figcaption></figure>
+<p id="a14c" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">Believe it or not, Henry&#8217;s dedication has caught the eye of our Chief Commercial Officer, Ryan Toohey, who says:  , we love it. It&#8217;s always great to see the enthusiasm students have for our robots.  ” Henry&#8217;s Starship It&#8217;s no exaggeration to say that his mobile has become an iconic symbol of the special bond between students and robots.</p>
+<p id="edcc" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">But the love for Starship Robots goes far beyond Oregon State University. Meet Eric Arberg, a University of Texas at Dallas graduate and energetic captain of his UTD Spirit. Eric shared an adorable photo of himself and Temok (UT Dallas&#8217; popular mascot) celebrating graduation with a robot. In his heartfelt message, Eric expressed his deep respect for Starshipbot: &#8220;Thank you for always being such a cute part of campus culture <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f495.png" alt="💕" class="wp-smiley" style="height: 1em; max-height: 1em;" />.&#8221;</p>
+<figure class="mu mv mw mx my lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld mz"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PocV6EXDorb-inxz_NyZ-w.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*PocV6EXDorb-inxz_NyZ-w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*PocV6EXDorb-inxz_NyZ-w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*PocV6EXDorb-inxz_NyZ-w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*PocV6EXDorb-inxz_NyZ-w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*PocV6EXDorb-inxz_NyZ-w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*PocV6EXDorb-inxz_NyZ-w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*PocV6EXDorb-inxz_NyZ-w.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Eric and University of Texas at Dallas mascot Temoc pose with two robots for their graduation photo. Eric wears black while Temok has pops of orange and green." class="bg lp lq c" width="700" height="467" loading="lazy"/></picture></div>
+</div><figcaption class="lr ls lt lc ld lu lv be b bf z hb">Eric and UTD mascot Temoc pose with robots at graduation.</figcaption></figure>
+<p id="7aee" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">It&#8217;s not just about convenience. The Starship robot has become an essential companion for students like Taylor Kitchen at Bowling Green State University. Throughout her tough college years, these robots provided help when she needed it most. Expressing her gratitude, Taylor says:  “Thank you Starship for all the last minute food deliveries we sorely needed and for helping me get through college!” They are like trusted friends and help students It will ensure you never go hungry or miss out on the taste of home.</p>
+<figure class="mu mv mw mx my lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld na"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*BtRjNVcu8f32-kP4rSFg6w.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Taylor, wearing a graduation gown and orange shirt, sits behind a Starship delivery robot and poses for a photo wearing a graduate cap emblazoned with "Keep Moving Forward."" class="bg lp lq c" width="700" height="601" loading="lazy"/></picture></div>
+</div><figcaption class="lr ls lt lc ld lu lv be b bf z hb">Taylor and Robot say their final goodbyes before Bowling Green State University&#8217;s graduation ceremony.</figcaption></figure>
+<p id="5267" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">And when the COVID-19 pandemic confined students to dorms and study spaces, our robots were there to provide comfort and a sense of connection.</p>
+<p id="8d6c" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">Ole Miss graduate Marcy Trahan reflects on the impact: Thank you to all the cute robots that live on campus!  ”</p>
+<figure class="mu mv mw mx my lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld na"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*84eG50O7-_XI8O06YGB5rQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*84eG50O7-_XI8O06YGB5rQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*84eG50O7-_XI8O06YGB5rQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*84eG50O7-_XI8O06YGB5rQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*84eG50O7-_XI8O06YGB5rQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*84eG50O7-_XI8O06YGB5rQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*84eG50O7-_XI8O06YGB5rQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*84eG50O7-_XI8O06YGB5rQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Marcy poses with the Starship delivery robot and holds her blue graduation cap over the robot's lid." class="bg lp lq c" width="700" height="875" loading="lazy"/></picture></div>
+</div><figcaption class="lr ls lt lc ld lu lv be b bf z hb">Marcy and the Starship robot who wants to walk (or roll) across the stage for graduation!</figcaption></figure>
+<p id="5287" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">It fills us with pride and joy to know that our robots hold a special place in our students&#8217; hearts. The unwavering support and gratitude from our students is a constant reminder of the positive impact and lasting legacy our delivery robots have created in just a few years.</p>
+<p id="9ec1" class="pw-post-body-paragraph lw lx ev ly b lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp mq mr ms mt eo bj">We believe in a future where robots will make life easier and more convenient for people around the world. These students are living proof of this vision and offer a glimpse of how our technology will change the world. We feel extremely honored to have had such a profound impact on millions of people around the world, and we are committed to providing not just smiles and convenience, but a brighter and more exciting future. We will continue to maintain this.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/these-little-campus-celebrities-are-changing-college-life-ce154c0af838?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/little-celebrities-on-campus-who-are-changing-college-life-written-by-reed-zura-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Inclusivity in Action: Starship Technologies Proudly in LA &#124; Written by Reed Zura &#124; Starship Technologies</title>
+		<link>/inclusivity-in-action-starship-technologies-proudly-in-la-written-by-reed-zura-starship-technologies/</link>
+					<comments>/inclusivity-in-action-starship-technologies-proudly-in-la-written-by-reed-zura-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 01 Jun 2023 13:34:51 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/inclusivity-in-action-starship-technologies-proudly-in-la-written-by-reed-zura-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] At Starship Technologies, inclusion and diversity are more than just words. They are deeply ingrained in our values. This year, we embrace these values ​​and are excited to announce our participation in the historic and world-famous LA Pride Parade. For the first time, our team and Starship robots will proudly march in solidarity with ... <a title="Inclusivity in Action: Starship Technologies Proudly in LA &#124; Written by Reed Zura &#124; Starship Technologies" class="read-more" href="/inclusivity-in-action-starship-technologies-proudly-in-la-written-by-reed-zura-starship-technologies/" aria-label="More on Inclusivity in Action: Starship Technologies Proudly in LA &#124; Written by Reed Zura &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<figure class="ew ex ey ez fa fb et eu paragraph-image">
+<div role="button" tabindex="0" class="fc fd fe ff bg fg">
+<div class="et eu ev"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*fqZZdrdifNXnoLmTzUiwDw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Black starship logo over pastel rainbow gradient" class="bg fh fi c" width="700" height="423" loading="eager"/></picture></div>
+</div>
+</figure>
+<div>
+<div class="gm gn go gp gq">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gr gs gt gu gv ab">
+<div>
+<div class="ab gw">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gx gy bx gz ha">
+<div class="l fe"><img decoding="async" alt="Lead shift" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/1*3i5gCPQHCsONWlfcf8mcUw.jpeg" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="he ab fe">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l hf hg bx gz hh">
+<div class="l fe"><img decoding="async" alt="starship technologies" class="l ec bx bq hi cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p id="6152" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">At Starship Technologies, inclusion and diversity are more than just words. They are deeply ingrained in our values. This year, we embrace these values ​​and are excited to announce our participation in the historic and world-famous LA Pride Parade.</p>
+<p id="0e8e" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">For the first time, our team and Starship robots will proudly march in solidarity with the LGBTQ+ community. This demonstrates our unwavering support and commitment to fostering an inclusive work environment where all employees can grow into their full selves.</p>
+<p id="de87" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">We aim to make a big statement at LA Pride as our Starship robot takes to the vibrant and vibrant streets of Los Angeles. This important opportunity aligns perfectly with our recently launched core values.  &#8220;We love that you&#8217;re different, and that&#8217;s what makes us unique.&#8221; By participating in the Pride Parade, we only embody this core value. We reaffirm our dedication to fostering an inclusive workplace where everyone feels empowered to be their authentic selves.</p>
+<p id="7be4" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">We hand-picked three outstanding Diversity, Equity, and Inclusion (DEI) Ambassadors to lead our participation in this iconic event. These prominent people provide valuable insight into what Pride means to them personally and why they are passionate about marching alongside the LGBTQ+ community.</p>
+<p id="5e67" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Through their thoughtful responses, we will gain a deeper understanding of our common motivations and the deeper meaning of Starship&#8217;s presence at Pride parades. We invite you to join us as we celebrate diversity, embrace inclusion, and demonstrate our commitment to building a more just and inclusive world.</p>
+<h2 id="b794" class="nn mq fl be mr no np nq mv nr ns nt mz mc nu nv nw mg nx ny nz mk oa ob oc od bj"><em class="oe">Meet Quyen Huynh (she/her), US Human Resources Manager.</em></h2>
+<ol class="">
+<li id="876e" class="lr ls fl lt b lu of lw lx ly og ma mb mc oh me mf mg oi mi mj mk oj mm mn mo ok ol om bj">What made you decide to participate in the Pride Parade?</li>
+</ol>
+<ul class="">
+<li id="f83d" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">I choose to march in the Pride Parade every year to celebrate and honor the LGBTQ+ community, voices, and history.</li>
+</ul>
+<p id="db4e" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">2. Why is it important for you to participate in this event?</p>
+<ul class="">
+<li id="0cc4" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">Representation is important. As a first-generation student and child of immigrant parents, I decided to push myself further into the minority group by identifying as lesbian and marrying a deaf wife. When I first started coming out of the closet, it went through a lot for me. Please travel (even if it doesn&#8217;t work)! All kidding aside, my story seemed so far removed from other stories that I honestly felt scared and at times overwhelmed that I couldn&#8217;t empathize with three of my gay friends from high school. That was until I attended my first Seattle Pride Parade in 2012. The Seattle Pride Parade was a place where I met and connected with many Asian Americans who shared the same struggles as me (coming out to my parents, being shunned by my family). and kicked out of the house, and the list goes on). So that was my coming out story, caught between two parentheses. Sure, it might not make sense to most people, but it made sense to us. Thanks to Pride, I was able to find a home I never knew existed. Pride also gave me a voice. It&#8217;s important to me (and my wife) to use the voices we have, to express our true selves, and to support the generations of queers and baby gays who are still discovering their sexuality. To restore the rights and freedoms that were and are still denied to us. voice. Visibility is very important, which is why our participation in the Pride March is important.</li>
+</ul>
+<p id="0952" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">3. What does it mean to you that Starship has given you the opportunity to lead this event?</p>
+<ul class="">
+<li id="4308" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">It was an honor to march with Starship at Pride. As a leader, I want to shine a spotlight on civil rights issues. At the same time, we hope to bring together all kinds of amazing starshippers from all walks of life and have the opportunity to celebrate who we really are at this event.</li>
+</ul>
+<p id="8bc4" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">4. What does Pride symbolize to you?</p>
+<ul class="">
+<li id="57de" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">Pride is a symbol of love and acceptance, giving people freedom of identity and expression, and promoting equality, visibility and justice.</li>
+</ul>
+<figure class="os ot ou ov ow fb et eu paragraph-image">
+<div role="button" tabindex="0" class="fc fd fe ff bg fg">
+<div class="et eu or"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*rjZqPSq5rWgBbjPDvaY2gg.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Quen and his wife Amy pose for photos in white wedding dresses after their elopement in the Northern Cascades" class="bg fh fi c" width="700" height="467" loading="lazy"/></picture></div>
+</div><figcaption class="ox oy oz et eu pa pb be b bf z hq">&#8220;08/18/2021 — Love wins! Amy and I are doing our best as we chase the sunset in the mountains. Elopement in the North Cascades.&#8221;</figcaption></figure>
+<h2 id="38ee" class="nn mq fl be mr no np nq mv nr ns nt mz mc nu nv nw mg nx ny nz mk oa ob oc od bj">Meet Elda Velazquez Martinez (she/her), US Support Manager.</h2>
+<ol class="">
+<li id="de01" class="lr ls fl lt b lu of lw lx ly og ma mb mc oh me mf mg oi mi mj mk oj mm mn mo ok ol om bj">What made you decide to participate in the Pride Parade?</li>
+</ol>
+<ul class="">
+<li id="bd9d" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">People who left because of their past and the violence they suffered for being who they were.</li>
+</ul>
+<p id="2044" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">2. Why is it important for you to participate in this event?</p>
+<ul class="">
+<li id="40a8" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">I can change society, we are all entitled to the same rights and respect</li>
+</ul>
+<p id="9085" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">3. What does it mean to you that Starship has given you the opportunity to lead this event?</p>
+<ul class="">
+<li id="e301" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">I feel it&#8217;s important to make this movement visible and represent companies that support diversity and inclusion.</li>
+</ul>
+<p id="a5b3" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">4. What does Pride symbolize to you?</p>
+<ul class="">
+<li id="5db7" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">Boldly accepting who you really are and being unapologetic about who you are. It symbolizes being satisfied with one&#8217;s identity and seeking acceptance from others.</li>
+</ul>
+<figure class="os ot ou ov ow fb et eu paragraph-image">
+<div class="et eu pc"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 1100w, https://miro.medium.com/v2/resize:fit:1024/format:webp/1*gQq8PvBKReKhYYNJUvM03Q.png 1024w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 512px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*gQq8PvBKReKhYYNJUvM03Q.png 640w, https://miro.medium.com/v2/resize:fit:720/1*gQq8PvBKReKhYYNJUvM03Q.png 720w, https://miro.medium.com/v2/resize:fit:750/1*gQq8PvBKReKhYYNJUvM03Q.png 750w, https://miro.medium.com/v2/resize:fit:786/1*gQq8PvBKReKhYYNJUvM03Q.png 786w, https://miro.medium.com/v2/resize:fit:828/1*gQq8PvBKReKhYYNJUvM03Q.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*gQq8PvBKReKhYYNJUvM03Q.png 1100w, https://miro.medium.com/v2/resize:fit:1024/1*gQq8PvBKReKhYYNJUvM03Q.png 1024w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 512px"/><img alt="Elda smiles in front of LA's public art "Urban Light"" class="bg fh fi c" width="512" height="512" loading="lazy"/></picture></div><figcaption class="ox oy oz et eu pa pb be b bf z hq">Elda has many adventures!</figcaption></figure>
+<h2 id="114b" class="nn mq fl be mr no np nq mv nr ns nt mz mc nu nv nw mg nx ny nz mk oa ob oc od bj"><em class="oe">Meet Global Social Media Specialist Reed Zula (he/him).</em></h2>
+<ol class="">
+<li id="0a74" class="lr ls fl lt b lu of lw lx ly og ma mb mc oh me mf mg oi mi mj mk oj mm mn mo ok ol om bj">What made you decide to participate in the Pride Parade?</li>
+</ol>
+<ul class="">
+<li id="bfb7" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">I am joining Starship in the Pride Parade to celebrate and embrace my own identity while elevating the voices of those in the LGBTQ+ community around the world. Pride parades are powerful platforms for awareness, acceptance, and solidarity. This is an opportunity for me to express my pride in who I am, while also advocating for equality and rights for LGBTQ+ individuals around the world.</li>
+</ul>
+<p id="60d0" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">2. Why is it important for you to participate in this event?</p>
+<ul class="">
+<li id="ed5a" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">The only Pride event I&#8217;ve ever been to was last year&#8217;s New York City Pride Parade. For the first time in my life, I felt what it meant to be part of a larger community that shared similar experiences, challenges, and aspirations. By just being who I am, I was able to connect with others who have been through a series of challenges and celebrate the resilience we all share. Secondly, I am honored to be a part of this event. We live in a world where queer voices are still silenced or ignored. Although I am participating for those who are unable to attend, I believe that participating in Pride parades increases awareness and awareness of LGBTQ+ issues and contributes to the ongoing fight for equality and social progress. .</li>
+</ul>
+<p id="c83e" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">3. What does it mean to you that Starship has given you the opportunity to lead this event?</p>
+<ul class="">
+<li id="b6a8" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">March with your colleagues and represent your company to send a powerful message of inclusion and support. This shows that my workplace values ​​diversity and accepts employees for who they are, regardless of sexual orientation. It is a great honor to be chosen to lead this event. This shows me that my company not only values ​​me as an employee, but also recognizes the importance of LGBTQ+ representation and allies. This means the company is committed to fostering an inclusive and supportive work environment where employees can be their true selves and bring their best to work. Assigning this responsibility makes me feel empowered and respected and strengthens my sense of belonging within the organization.</li>
+</ul>
+<p id="4038" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">4. What does Pride symbolize to you?</p>
+<ul class="">
+<li id="c0b9" class="lr ls fl lt b lu lv lw lx ly lz ma mb mc on me mf mg oo mi mj mk op mm mn mo oq ol om bj">For me, Pride is a celebration of authenticity, resilience, and progress. It symbolizes the freedom to love and express yourself without fear or shame. Pride reminds us of the struggles and sacrifices of our predecessors who fought for LGBTQ+ rights and paved the way for greater acceptance and equality. But it&#8217;s also a call to action: we&#8217;re not done yet. It also represents a call to action, urging us all to continue working towards a future where everyone is treated with dignity, respect and equal rights, regardless of their sexual orientation or gender identity. .</li>
+</ul>
+<figure class="os ot ou ov ow fb et eu paragraph-image">
+<div role="button" tabindex="0" class="fc fd fe ff bg fg">
+<div class="et eu pd"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*lIOlZyyFfERgtSw4TN__wQ.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="Reed holds a palm-sized Pride flag at New York's first Pride in 2022." class="bg fh fi c" width="700" height="934" loading="lazy"/></picture></div>
+</div><figcaption class="ox oy oz et eu pa pb be b bf z hq">Reed attended his first Pride at the 2022 New York City Pride Parade!</figcaption></figure>
+<p id="876c" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">As we eagerly prepare to march at LA Pride, we are filled with joy, purpose, and a sense of unity.  This milestone moment for Starship Technologies symbolizes our unwavering commitment to celebrating diversity and promoting inclusion.</p>
+<p id="336d" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Through the voices of our DEI Ambassadors, we gain valuable insight into what Pride means to them personally, and their passion for this event is contagious. Their stories and perspectives have deepened our understanding of the importance of Pride and the importance of standing in solidarity with the LGBTQ+ community.</p>
+<p id="266e" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">As we take this bold step, please join us in celebrating diversity, embracing inclusivity, and advocating for a world where all individuals are accepted for who they are. Together, let&#8217;s create a future where love, respect and acceptance have no boundaries.</p>
+<p id="9023" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">We are very proud to be participating in the LA Pride Parade for the first time ever. We also hope that our presence will be a beacon of hope, inspiring others to champion diversity and build workplaces and communities where everyone can thrive.</p>
+<p id="5812" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">The journey has just begun. Together, we will continue to foster a world where differences are respected and love triumphs over prejudice.</p>
+<p id="2d86" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Starship is honored to be a part of the Pride Parade and looks forward to sharing this amazing experience with you. Let&#8217;s make history together and pave the way for a brighter, more inclusive future.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/inclusivity-in-action-starship-robots-rolling-with-pride-in-la-dd7594e41555?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/inclusivity-in-action-starship-technologies-proudly-in-la-written-by-reed-zura-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Global Accessibility Awareness Day: Building Accessibility into Technology &#124; Written by Ed Lovelock &#124; Starship Technologies</title>
+		<link>/global-accessibility-awareness-day-building-accessibility-into-technology-written-by-ed-lovelock-starship-technologies/</link>
+					<comments>/global-accessibility-awareness-day-building-accessibility-into-technology-written-by-ed-lovelock-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 18 May 2023 15:51:29 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/global-accessibility-awareness-day-building-accessibility-into-technology-written-by-ed-lovelock-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] As the world&#8217;s leading autonomous robotic delivery provider, one of our core missions is to make people&#8217;s lives easier and more convenient. We passionately believe in the power of technology and innovation to positively impact people&#8217;s lives and communities. But we also know that accessibility and the needs of people with disabilities are too ... <a title="Global Accessibility Awareness Day: Building Accessibility into Technology &#124; Written by Ed Lovelock &#124; Starship Technologies" class="read-more" href="/global-accessibility-awareness-day-building-accessibility-into-technology-written-by-ed-lovelock-starship-technologies/" aria-label="More on Global Accessibility Awareness Day: Building Accessibility into Technology &#124; Written by Ed Lovelock &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<div>
+<div class="fw fx fy fz ga">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gb gc gd ge gf ab">
+<div>
+<div class="ab gg">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gh gi bx gj gk">
+<div class="l go"><img decoding="async" alt="ed lovelock" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/1*nqpR5U1p-SSz-iseaJmsow.png" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="gp ab go">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gq gr bx gj gs">
+<div class="l go"><img decoding="async" alt="starship technologies" class="l ec bx bq gt cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p id="5f81" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">As the world&#8217;s leading autonomous robotic delivery provider, one of our core missions is to make people&#8217;s lives easier and more convenient.</p>
+<p id="ce3c" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">We passionately believe in the power of technology and innovation to positively impact people&#8217;s lives and communities. But we also know that accessibility and the needs of people with disabilities are too often overlooked in technology development.</p>
+<p id="ec74" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">We&#8217;re leading the charge in a completely new industry, so we know we won&#8217;t get everything right on the first try. But at Starship, a true two-way engagement around accessibility and accessibility needs is embedded in what we do, and we&#8217;re committed to building on what we learn along the way.</p>
+<figure class="md me mf mg mh mi ma mb paragraph-image">
+<div role="button" tabindex="0" class="mj mk go ml bg mm">
+<div class="ma mb mc"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*ly-lPoY0tVslQhbIV1hr9g.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg mn mo c" width="700" height="467" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<p id="0f39" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">Over the years, we&#8217;ve invested time and resources into improving our technology with accessibility in mind. For example, he was able to incorporate autonomous recognition of mobility devices and wheelchairs into the robot&#8217;s behavior.</p>
+<p id="e785" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">We like that we can hear the sound when the robot moves on the sidewalk, that the grocery aisles are at a height that most wheelchair users can reach (and that the products are packed in bags for easy handling). ) is important. We&#8217;ve teamed up with a leading visual impairment charity to ensure guide dogs and our robots can happily share the road. We also incorporate feedback from disabled customers, residents and charities into our engineering and design processes, improving our efforts with every trip and conversation.</p>
+<p id="e89e" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">But there is still work to be done.</p>
+<p id="c2e2" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">That&#8217;s why today, on Global Accessibility Awareness Day, we&#8217;re proudly launching the Starship Accessibility Advisory Panel.</p>
+<p id="86a7" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">We are delighted to welcome representatives from the Royal National Institute for Blind People (RNIB), the University of Leeds and the health and welfare charity Leonard Cheshire on our panel, to help bring vital lived professional experience to the conversation across the organization. I&#8217;m glad.</p>
+<p id="3df6" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">This is a start, not an end point, and we want to ensure we have experiences, representation and perspectives from people from different backgrounds and with different disabilities and abilities. Based on our current committee membership, we are particularly interested in hearing directly from people who use mobility devices or wheelchairs within the surgical area and/or who are neurodiverse. .  Please contact us at publicaffairs@starship.co.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/global-accessibility-awareness-day-embedding-accessibility-within-tech-1eee00669be1?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/global-accessibility-awareness-day-building-accessibility-into-technology-written-by-ed-lovelock-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Achieving a greener future.This Earth Day, we encourage you… &#124; Written by Ledete Nardos &#124; Starship Technologies</title>
+		<link>/achieving-a-greener-future-this-earth-day-we-encourage-you-written-by-ledete-nardos-starship-technologies/</link>
+					<comments>/achieving-a-greener-future-this-earth-day-we-encourage-you-written-by-ledete-nardos-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 21 Apr 2023 16:45:41 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/achieving-a-greener-future-this-earth-day-we-encourage-you-written-by-ledete-nardos-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] Realizing a greener future This Earth Day, we encourage everyone to think about their impact on the environment. At Starship Technologies, we&#8217;re proud to be at the forefront of sustainable last-mile delivery, pioneering battery-powered robotic services that are good for business and good for the planet. Our commitment to sustainability is evident in our ... <a title="Achieving a greener future.This Earth Day, we encourage you… &#124; Written by Ledete Nardos &#124; Starship Technologies" class="read-more" href="/achieving-a-greener-future-this-earth-day-we-encourage-you-written-by-ledete-nardos-starship-technologies/" aria-label="More on Achieving a greener future.This Earth Day, we encourage you… &#124; Written by Ledete Nardos &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<p id="c671" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">Realizing a greener future</p>
+<figure class="lg lh li lj lk ll ld le paragraph-image">
+<div role="button" tabindex="0" class="lm ln fl lo bg lp">
+<div class="ld le lf"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*0AbZFNUYfW0rJk0VrEl8vw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg lq lr c" width="700" height="526" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<p id="6fb4" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">This Earth Day, we encourage everyone to think about their impact on the environment.  At Starship Technologies, we&#8217;re proud to be at the forefront of sustainable last-mile delivery, pioneering battery-powered robotic services that are good for business and good for the planet.</p>
+<p id="af65" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">Our commitment to sustainability is evident in our service areas around the world, reducing the number of cars and delivery vans traveling to and from urban supermarkets and providing choice for U.S. students. This has a significant impact on reducing CO2 emissions. Choose battery-powered robot delivery over traditional food delivery methods.</p>
+<p id="91cd" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">To put our efforts in perspective, our robots have now traveled over 6 million miles. This equates to 645 trips from the UK to Australia, or over 2,300 trips from New York to Los Angeles, or his 244 trips around the world. By having customers use battery-powered robots to replace car travel, they were able to reduce their CO2 emissions into the atmosphere by approximately 1.7 million kilograms. This equates to a passenger flying his 6,792 hours on the plane.</p>
+<p id="d020" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">But it doesn&#8217;t end there. We are always looking for ways to further reduce our environmental impact and make our operations more sustainable. Where possible, we rely on renewable energy providers to charge our robots and are currently experimenting with different charging methods and deployment processes to increase efficiency while reducing energy consumption.</p>
+<p id="f973" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">But sustainability isn&#8217;t just good for the environment; it&#8217;s also good for business. Let&#8217;s be real here. Concerns about the bottom line are primarily holding companies back from updating their operations towards more sustainable solutions. A 2023 study by McKinsey &#038; Company found that over the past five years, products that claimed environmental and social benefits had an 8% higher cumulative growth rate than those that did not. Customers value sustainability and are backing it up by shifting their purchasing patterns towards sustainable products. In conclusion, the report notes that &#8220;it is a moral obligation for both consumers and businesses to understand and address these impacts on society and the planet as part of their purchasing decisions and ESG-related actions.&#8221; are doing. Product label claims can be an important part of fulfilling this moral obligation if they represent genuine and meaningful environmental and social action.  ”</p>
+<p id="1bc7" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">At Starship, we&#8217;re proud to help our partners achieve their sustainability goals and initiatives. Since last year, we&#8217;ve partnered with delivery giants like Grubhub to give students across the country the opportunity to have their favorite meals delivered to them in an environmentally responsible way while making their daily lives on campus more convenient. I did. This is a win-win for the university, the students, and most importantly the environment. Similarly, we are helping our grocery partners increase their efforts to reduce their carbon footprint by offering on-demand, battery-powered store-to-home delivery in cities around the world.</p>
+<p id="0db5" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">We are also passionate about encouraging others to take action towards a greener future. The story of our employee Andrew Tucker is a case in point.  Two years ago, Andrew and his wife donated a car to National Public Radio as part of a vehicle donation program. So they funded his NPR to create a local broadcast that included some of Andrew&#8217;s favorite shows such as &#8220;Morning Edition,&#8221; &#8220;The World,&#8221; and &#8220;Wait Wait Don&#8217;t Tell Me.&#8221; At the same time, I got rid of my unwanted car. For them, owning a car was an unnecessary headache, and donating a car was in line with their desire to live a greener life. Andrew says working at Starship has inspired him.  “I feel like my values ​​for environmental protection are reflected in his goals for Starship…I absolutely want to see fewer cars on the road in the future, and Starship is making this a reality. &#8220;We&#8217;re starting to do that.&#8221;</p>
+<p id="f70e" class="pw-post-body-paragraph ke kf kg kh b ki kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky kz la lb lc jz bj">This Earth Day, we encourage everyone to take action towards a more sustainable lifestyle. Every small step makes a difference, whether it&#8217;s donating your unwanted car, practicing more mindful consumption, reducing your energy consumption, or simply choosing to walk or cycle instead of driving. By working together, we can create a brighter future for ourselves and the planet.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/delivering-a-greener-future-a5dcd3a5358e?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/achieving-a-greener-future-this-earth-day-we-encourage-you-written-by-ledete-nardos-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Starship Technologies sets new world record with 10 million kilometers driven &#124; Written by Reed Zura &#124; Starship Technologies</title>
+		<link>/starship-technologies-sets-new-world-record-with-10-million-kilometers-driven-written-by-reed-zura-starship-technologies/</link>
+					<comments>/starship-technologies-sets-new-world-record-with-10-million-kilometers-driven-written-by-reed-zura-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 03 Apr 2023 17:01:34 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/starship-technologies-sets-new-world-record-with-10-million-kilometers-driven-written-by-reed-zura-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] It&#8217;s another exciting day here at Starship. Our robot has completed a new record. Mileage 10 million km! To put into perspective the hard work accomplished by our busy bots, 10 million kilometers is the equivalent of over 12 round trips by car per month. No other autonomous delivery service has achieved this and ... <a title="Starship Technologies sets new world record with 10 million kilometers driven &#124; Written by Reed Zura &#124; Starship Technologies" class="read-more" href="/starship-technologies-sets-new-world-record-with-10-million-kilometers-driven-written-by-reed-zura-starship-technologies/" aria-label="More on Starship Technologies sets new world record with 10 million kilometers driven &#124; Written by Reed Zura &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<div>
+<div class="fw fx fy fz ga">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gb gc gd ge gf ab">
+<div>
+<div class="ab gg">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gh gi bx gj gk">
+<div class="l go"><img decoding="async" alt="Lead shift" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/1*3i5gCPQHCsONWlfcf8mcUw.jpeg" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="gp ab go">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gq gr bx gj gs">
+<div class="l go"><img decoding="async" alt="starship technologies" class="l ec bx bq gt cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figure class="lf lg lh li lj lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld le"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hE4JxuWvQ07Oc4FKcM8R4A.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*hE4JxuWvQ07Oc4FKcM8R4A.png 640w, https://miro.medium.com/v2/resize:fit:720/1*hE4JxuWvQ07Oc4FKcM8R4A.png 720w, https://miro.medium.com/v2/resize:fit:750/1*hE4JxuWvQ07Oc4FKcM8R4A.png 750w, https://miro.medium.com/v2/resize:fit:786/1*hE4JxuWvQ07Oc4FKcM8R4A.png 786w, https://miro.medium.com/v2/resize:fit:828/1*hE4JxuWvQ07Oc4FKcM8R4A.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*hE4JxuWvQ07Oc4FKcM8R4A.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*hE4JxuWvQ07Oc4FKcM8R4A.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg lp lq c" width="700" height="292" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<p id="0f42" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">It&#8217;s another exciting day here at Starship. Our robot has completed a new record. <strong class="lt ew">Mileage 10 million km!</strong></p>
+<p id="b85b" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">To put into perspective the hard work accomplished by our busy bots, 10 million kilometers is the equivalent of over 12 round trips by car per month. No other autonomous delivery service has achieved this and we are extremely proud of our team for achieving this feat. This milestone distance is further than any other company in the industry and more than six times his 1 million miles recently announced by international self-driving car developers Waymo and Cruise.</p>
+<p id="7c02" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">But what really sets us apart is the level of autonomy our robots have achieved. We have recently seen some data where one of our robots delivered food to a customer 100% autonomously over a period of 16 hours, without any human intervention or supervision, for 24 consecutive times. I was surprised that it was completed.</p>
+<p id="2052" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Today, our robots are part of many people&#8217;s daily lives. Building on our success in offering delivery from hundreds of stores through our unique Starship app, we are now offering our &#8216;As a Service&#8217; option to global partners who want to make their own deliveries more sustainable, lower cost and more enjoyable. We offer &#8220;Delivery as a Service&#8221; (DaaS). Currently, last mile delivery is very inefficient and expensive, so there is a lot of interest in using our technology. We have proven that our technology has the potential to revolutionize last-mile delivery, which is currently one of the most inefficient and expensive parts of the delivery process.</p>
+<p id="ce65" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">This milestone is an amazing achievement and shows that our service is truly leading the way in the self-driving delivery industry. We recently shared that our robots have made over 4 million autonomous deliveries and averaged 140,000 road crossings per day. He has over 2,000 robots roaming around the world, so it&#8217;s only a matter of time before they cross 20 million kilometers.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/starship-technologies-sets-another-world-record-with-10-million-kilometers-driven-867590ce8f4c?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/starship-technologies-sets-new-world-record-with-10-million-kilometers-driven-written-by-reed-zura-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Bridging the gender gap: Inspiring words from women making waves with Starship &#124; Written by Annie Handrick &#124; Starship Technologies</title>
+		<link>/bridging-the-gender-gap-inspiring-words-from-women-making-waves-with-starship-written-by-annie-handrick-starship-technologies/</link>
+					<comments>/bridging-the-gender-gap-inspiring-words-from-women-making-waves-with-starship-written-by-annie-handrick-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 08 Mar 2023 11:43:28 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/bridging-the-gender-gap-inspiring-words-from-women-making-waves-with-starship-written-by-annie-handrick-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] Author: Rhys Wiersall In honor of today&#8217;s International Women&#8217;s Day, we&#8217;ve compiled a list of powerful quotes from starship women who have made an impact in our company and beyond. These quotes remind us of the strength, resilience, and wisdom of women throughout history and inspire all of us here at Starship to continue ... <a title="Bridging the gender gap: Inspiring words from women making waves with Starship &#124; Written by Annie Handrick &#124; Starship Technologies" class="read-more" href="/bridging-the-gender-gap-inspiring-words-from-women-making-waves-with-starship-written-by-annie-handrick-starship-technologies/" aria-label="More on Bridging the gender gap: Inspiring words from women making waves with Starship &#124; Written by Annie Handrick &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<div>
+<div class="fw fx fy fz ga">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gb gc gd ge gf ab">
+<div>
+<div class="ab gg">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gh gi bx gj gk">
+<div class="l go"><img decoding="async" alt="Annie Handrick" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/0*De0WSoZLG7LeMzrj" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="gp ab go">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gq gr bx gj gs">
+<div class="l go"><img decoding="async" alt="starship technologies" class="l ec bx bq gt cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figure class="lf lg lh li lj lk lc ld paragraph-image">
+<div role="button" tabindex="0" class="ll lm go ln bg lo">
+<div class="lc ld le"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*0Y0_TF6WrqCQalzTGxO0Jg.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg lp lq c" width="700" height="166" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<p id="eb40" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">Author: Rhys Wiersall</em></p>
+<p id="8cb3" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew">In honor of today&#8217;s International Women&#8217;s Day, we&#8217;ve compiled a list of powerful quotes from starship women who have made an impact in our company and beyond. These quotes remind us of the strength, resilience, and wisdom of women throughout history and inspire all of us here at Starship to continue fighting for a more just and equitable world.</strong></p>
+<p id="58eb" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Despite significant advances in recent years, women remain underrepresented in the technology and startup industries. According to a World Bank report, less than one-third of the global technology workforce is made up of women, and the number is even lower for women of color. Lack of diversity in the tech and startup industries is a complex problem with multiple causes.</p>
+<p id="881e" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">One of the challenges women face in the tech and startup industries is the lack of female role models and mentors. Women often struggle to get support and guidance from other women in this field, which can make it difficult to navigate the industry and build a successful career.</p>
+<p id="3f0c" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Another challenge is gender bias. Research shows that women are often underrepresented and underrepresented in male-dominated fields such as technology. This bias can manifest itself in many ways, from unequal pay to exclusion from important decision-making processes.</p>
+<p id="a6d6" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">However, many women are breaking through these barriers, fighting back and advocating for greater representation and inclusion within the industry, and making a name for themselves in the world of tech and startups.</p>
+<p id="6254" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Starship&#8217;s women from around the world are a perfect example of this. We have collected inspirational quotes from many of them, so let them be your role models and inspirations. Their words remind us that women are strong, resilient, and capable of achieving greatness. So let us take a moment to reflect on their wisdom and courage as we continue to strive for a more just and just world for all.</p>
+<p id="af52" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">… … … … … … … … …</p>
+<p id="343c" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">&#8220;I&#8217;ve battled impostor syndrome since day one of my career. Dealing with imposter syndrome is sometimes not as easy as having a &#8216;lady boss mindset.&#8217; I&#8217;m seven years into my career and I always have to remind myself that if you walk into a room, you deserve to be in that room.  ”</em></p>
+<p id="f621" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Andrea Martinez De Carolis, US-based Campus Marketing Manager</em></strong></p>
+<p id="9f5d" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">About recruitment:</em></p>
+<p id="897b" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">“Sometimes in life you find yourself in a position where only one of the following applies: I like the people I work with, I like my job, I like my compensation. We all deserve to be admired, recognized, and challenged. Finding this balance will take time. But believe me, it&#8217;s there. Even if you find yourself searching for the right career trajectory, don&#8217;t compromise on yourself. Be clear about your goals, be upfront about your needs, and go after what you want. The job market is constantly changing, but right now, recruiters are waiting to find you. Now is the time. Don&#8217;t be afraid to leverage online resources, application platforms, and networks to accelerate your professional development.&#8221;</em></p>
+<p id="13f3" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">About my goals:</em></p>
+<p id="b1fa" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">“My ambition is to be known as someone who helps others. My work experience started with serving others in the restaurant industry. I then went on to help create financial solutions. I have also helped owners grow their local businesses.Currently, I assist in recruiting top talent to help grow the business.The position has been in place for several years. Although we have changed over the years, our goal has always been clear: to continue to use our voice to advocate, inspire and support others.”</em></p>
+<p id="6013" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Gracie Meadows, US Recruiter</em></strong></p>
+<p id="4ba4" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">Women leaders are often labeled as bossy, difficult, aggressive, meddlesome, and emotional. What that really means is that you are assertive, ask the right questions, and lead with your head and heart. Don&#8217;t let others change or deflate you, stay true to yourself, and be open to change and growth. Make brave decisions with patience and de-prioritize people-pleasing.</em></p>
+<p id="ecea" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Teele Kruzman, Head of Services and Deployment, Estonia</em></strong></p>
+<p id="697f" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">&#8220;Diversity of thought and experience leads to breakthrough ideas. No one ever said there was only one way to eat peanut butter. The best part about this delicious spread is that you can make it yourself.&#8221; The technology industry is no different. Innovative women have inspired me from an early age. When you can do the same with a power screwdriver or peanut butter, join me.</em></p>
+<p id="414a" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Sara Gutierrez, robotics engineer based in the United States</em></strong></p>
+<p id="7fe5" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">“There is never a dull day at Starship! Being part of such an innovative company, working on projects that have never been done before in the world, means that all of our employees grow every day and It means we can feel like we&#8217;re learning. As a result, many of our employees really enjoy their jobs and are incredibly collaborative with each other as a result.</em></p>
+<p id="b332" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">While there are certainly moments when things get difficult, such as when you&#8217;re working on multiple releases on top of your day-to-day duties (and we&#8217;ve had one recently!), we&#8217;re always working to improve our processes and make sure our customers are happy. doing. It’s worth it when a new city loves robot delivery!!”</em></p>
+<p id="b98e" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Arianna Namaki, UK-based City Marketing</em></strong></p>
+<p id="8c40" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">“Yes, you can” is my girl power mantra. When things and life get tough, this mantra pushes me to break through the glass ceiling and keep living my truth.  ”</em></p>
+<p id="a71b" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Quyen Huynh, US Human Resources Manager</em></strong></p>
+<p id="534d" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">“I grew up in Mexico for several years. I never knew how difficult it was to be a woman and live in fear every day, nor how difficult it was to get promoted because I was a woman. I hope we have the same rights. We deserve the same opportunities and respect.&#8221;</em></p>
+<p id="c980" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt ew"><em class="mp">Elda Velazquez, Service Team Leader in the United States</em></strong></p>
+<p id="77b6" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Last year on Women&#8217;s Day, we shared here the story of Karolina and Kaali, two bright and very smart Starship women. Please check them out too!</p>
+<p id="5661" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">-> </em><em class="mp">Meet amazing women on Starship: Kaari writes code to help Starship achieve its goals</em></p>
+<p id="f2b6" class="pw-post-body-paragraph lr ls ev lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><em class="mp">-> </em><em class="mp">Meet the amazing women at Starship: Karoliina keeps our robot fleet healthy</em></p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/rising-above-the-gender-gap-inspiring-words-from-women-making-waves-in-starship-82c6b6be1425?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/bridging-the-gender-gap-inspiring-words-from-women-making-waves-with-starship-written-by-annie-handrick-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Highlighting Black innovators in AI, robotics, and technology &#124; By Ledete Nardos &#124; Starship Technologies</title>
+		<link>/highlighting-black-innovators-in-ai-robotics-and-technology-by-ledete-nardos-starship-technologies/</link>
+					<comments>/highlighting-black-innovators-in-ai-robotics-and-technology-by-ledete-nardos-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 22 Feb 2023 15:57:59 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/highlighting-black-innovators-in-ai-robotics-and-technology-by-ledete-nardos-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] Black innovators have a long and extensive history of making significant contributions to advances in the fields of AI, robotics, and technology. Despite facing obstacles such as discrimination and limited access to resources, these pioneers have played an important role in shaping the world today. Here, we&#8217;d like to take a closer look at ... <a title="Highlighting Black innovators in AI, robotics, and technology &#124; By Ledete Nardos &#124; Starship Technologies" class="read-more" href="/highlighting-black-innovators-in-ai-robotics-and-technology-by-ledete-nardos-starship-technologies/" aria-label="More on Highlighting Black innovators in AI, robotics, and technology &#124; By Ledete Nardos &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<figure class="ew ex ey ez fa fb et eu paragraph-image">
+<div role="button" tabindex="0" class="fc fd fe ff bg fg">
+<div class="et eu ev"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*XjQxwuJXg4qzSyrttnHzdw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*XjQxwuJXg4qzSyrttnHzdw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*XjQxwuJXg4qzSyrttnHzdw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*XjQxwuJXg4qzSyrttnHzdw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*XjQxwuJXg4qzSyrttnHzdw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*XjQxwuJXg4qzSyrttnHzdw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*XjQxwuJXg4qzSyrttnHzdw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*XjQxwuJXg4qzSyrttnHzdw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg fh fi c" width="700" height="316" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<div>
+<div class="gm gn go gp gq">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gr gs gt gu gv ab">
+<div>
+<div class="ab gw">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gx gy bx gz ha">
+<div class="l fe"><img decoding="async" alt="Ledete Nardos" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/0*oPxHouvl30sKRF0T" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="he ab fe">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l hf hg bx gz hh">
+<div class="l fe"><img decoding="async" alt="starship technologies" class="l ec bx bq hi cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p id="7592" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Black innovators have a long and extensive history of making significant contributions to advances in the fields of AI, robotics, and technology. Despite facing obstacles such as discrimination and limited access to resources, these pioneers have played an important role in shaping the world today. Here, we&#8217;d like to take a closer look at some of the key contributors who have played key roles in taking Starship into the future.</p>
+<p id="40c2" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt fm">Dr. Gladys West</strong></p>
+<p id="241d" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Dr. Gladys West is one of the most notable Black female innovators in technology, revolutionizing the way we interact with the world, including both humans and robots. Her research changed the landscape of mapping technology and contributed to the invention of the Global Positioning System, commonly known as GPS. She published her paper entitled &#8220;Data Processing System Specification for the Geosat Satellite Radar Altimeter&#8221; (1986), documenting calculations for performing highly accurate localization using data collected from satellites. Did. Just like you and I use her GPS on our phones and computers, our robots can use this same technology to gather information about where to correctly deliver each order. So when you see this little robot traveling to deliver a hot meal, or showing up at the exact location you entered every time, you know who to thank.</p>
+<p id="48dc" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt fm">Dr. Mark Dean</strong></p>
+<p id="c5fe" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Dr. Mark Dean, a computer scientist and engineer, worked with the team as IBM&#8217;s chief engineer in the early 1980s and went on to lead the team that created the first IBM PC, developed the color monitor, and developed the first gigahertz. led. processor. This chip was built just before the new millennium and allows for faster processing speeds within PCs. But how does it affect us and robots? Have you ever looked up something or tried to load a page and it just felt like it was taking forever? Early in the morning, in a hurry? What if the app freezes when you try to order coffee before class? A phone/computer&#8217;s processor clock speed determines how quickly the central processing unit (CPU) can retrieve and interpret instructions. This allows your device to complete more tasks faster. Like mobile phones and computers, our ever-adapting robots can complete more deliveries by getting each order into customers&#8217; hands faster. Therefore, every road that people cross and every corner they turn would not have been possible without the invention of gigahertz processors and the contribution of gigahertz processors to the ever-evolving developments that have brought them to where they are today.</p>
+<p id="a992" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt fm">garrett morgan</strong></p>
+<p id="3796" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Our robots pass 140,000 intersections every day, and without Garrett Morgan and his development of the 3-position traffic light, we wouldn&#8217;t be able to pass a single one. Morgan was not only a successful businessman and inventor, but he was also the first person to own a car in the city of Cleveland in the early 1900s. It was also one of his. Morgan witnessed horse-drawn carriages, bicycles, and streetcars all colliding on the same road, creating confusion and inevitably leading to many accidents. With his invention of the three-position traffic light, he was able to eradicate a major problem of road safety that we take for granted today. And now our robots can traverse any road and safely deliver food to your door.</p>
+<p id="9dd3" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt fm">Roy Clay Sr.</strong></p>
+<p id="8545" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">In changing the history of technology and the reality we live in today, it&#8217;s not for nothing that he&#8217;s earned the nickname the Godfather of Silicon Valley.  Roy Clay Sr. was an early leader and leader in the technology industry, writing code and working on computing languages ​​long before Python or Javascript were even thought of. Without Clay, we would be living in a world where computers take up entire rooms and crash frequently. However, due to his outstanding ability in software development, Clay and his team brought his one of the first computers to market in 1966, which not only reduced the size of computers but also increased their reliability. Northern California (aka Silicon Valley, home of Starship). Silicon As CEO of Rod-L Electronics, one of the Valley&#8217;s first start-ups, Roy Clay Sr. not only provided each individual with a powerful and important tool, but also positioned himself as a world leader. I was positioned as a person of interest.  A tech startup that many companies, including Starship, look to for inspiration.</p>
+<p id="190b" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj"><strong class="lt fm">Clarence “Skip” Ellis</strong></p>
+<p id="ea66" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">Here at Starship, one of our guiding values ​​is &#8220;We work as one team.&#8221;  None of this would have been possible without Clarence Ellis, as her 500-plus employees in five countries work in vastly different time zones. As pioneers in the field of business transformation, our teams are able to work in collaborative systems built on Ellis designs through computer applications such as Apache Wave and Google Doc. This system is now used in almost every workspace. Thanks to Clarence, we are able to continue to innovate in these spaces while effectively collaborating with people in different parts of the world to bring food delivery robot ideas to life.</p>
+<p id="f954" class="pw-post-body-paragraph lr ls fl lt b lu lv lw lx ly lz ma mb mc md me mf mg mh mi mj mk ml mm mn mo eo bj">These are just five examples of Black innovators, pioneers, and leaders who have had a profound impact on AI, robotics, and technology throughout history. Despite facing unimaginable challenges, their perseverance and contributions have led to new innovations that improve our lives more than we can imagine and in ways that most take for granted. It paved the way for the development of technology. From the invention of food delivery robots to nearly every industry known to date, their innovations fundamentally changed the world and continue to inspire new generations of innovators today. These leaders have been and continue to be essential to the advancement of technology and the many other contributions needed to further advance society. As Black History Month comes to a close, it&#8217;s important that we continue to recognize their accomplishments and encourage diversity and inclusion in the technology field.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/highlighting-black-innovators-in-ai-robotics-and-technology-5acd27f5f564?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/highlighting-black-innovators-in-ai-robotics-and-technology-by-ledete-nardos-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>In honor of Black History Month.Author: Red Nardos &#124; Written by Annie Handrick &#124; Starship Technologies</title>
+		<link>/in-honor-of-black-history-month-author-red-nardos-written-by-annie-handrick-starship-technologies/</link>
+					<comments>/in-honor-of-black-history-month-author-red-nardos-written-by-annie-handrick-starship-technologies/#respond</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 01 Feb 2023 14:27:15 +0000</pubDate>
+				<category><![CDATA[news]]></category>
+		<guid isPermaLink="false">/in-honor-of-black-history-month-author-red-nardos-written-by-annie-handrick-starship-technologies/</guid>
+
+					<description><![CDATA[[ad_1] Author: Red Nardos Black History Month is a time to reflect on the contributions and accomplishments of Black individuals throughout history, but it is also a time to remember the struggles and challenges they have faced and continue to face. Just like those who have had to overcome obstacles and keep moving forward, we ... <a title="In honor of Black History Month.Author: Red Nardos &#124; Written by Annie Handrick &#124; Starship Technologies" class="read-more" href="/in-honor-of-black-history-month-author-red-nardos-written-by-annie-handrick-starship-technologies/" aria-label="More on In honor of Black History Month.Author: Red Nardos &#124; Written by Annie Handrick &#124; Starship Technologies">Read more</a>]]></description>
+										<content:encoded><![CDATA[<p> [ad_1]<br />
+</p>
+<div>
+<div>
+<div class="fw fx fy fz ga">
+<div class="speechify-ignore ab co">
+<div class="speechify-ignore bg l">
+<div class="gb gc gd ge gf ab">
+<div>
+<div class="ab gg">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gh gi bx gj gk">
+<div class="l go"><img decoding="async" alt="Annie Handrick" class="l ec bx dc dd cw" src="https://miro.medium.com/v2/resize:fill:88:88/0*De0WSoZLG7LeMzrj" width="44" height="44" loading="lazy" data-testid="authorPhoto"/></div>
+</div>
+</div>
+</div>
+<div class="gp ab go">
+<div>
+<div class="bl" aria-hidden="false">
+<div class="l gq gr bx gj gs">
+<div class="l go"><img decoding="async" alt="starship technologies" class="l ec bx bq gt cw" src="https://miro.medium.com/v2/resize:fill:48:48/1*vgFUFk-XveAbabMJLlmloA.png" width="24" height="24" loading="lazy" data-testid="publicationPhoto"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p id="91a3" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">Author: Red Nardos</p>
+<figure class="md me mf mg mh mi ma mb paragraph-image">
+<div role="button" tabindex="0" class="mj mk go ml bg mm">
+<div class="ma mb mc"><picture><source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"/><source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 640w, https://miro.medium.com/v2/resize:fit:720/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 720w, https://miro.medium.com/v2/resize:fit:750/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 750w, https://miro.medium.com/v2/resize:fit:786/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 786w, https://miro.medium.com/v2/resize:fit:828/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 828w, https://miro.medium.com/v2/resize:fit:1100/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 1100w, https://miro.medium.com/v2/resize:fit:1400/1*5xlDm-SVq7pMMlWGiPnLmw.jpeg 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"/><img alt="" class="bg mn mo c" width="700" height="166" loading="eager" role="presentation"/></picture></div>
+</div>
+</figure>
+<p id="f313" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">Black History Month is a time to reflect on the contributions and accomplishments of Black individuals throughout history, but it is also a time to remember the struggles and challenges they have faced and continue to face. Just like those who have had to overcome obstacles and keep moving forward, we too must learn from our experiences and use them to become better.</p>
+<p id="54ca" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">Starship strives every day to live up to our core values. These are the values ​​that guide each of us, and they extend far beyond our work within our company, the people we work with, the people we reach, and the impact we seek to create. It extends to things. Each journey, whether personal or professional, is an opportunity to learn and improve.</p>
+<p id="2fb8" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">First, let me state that diversity in technology is still a concern in 2023.  According to the Kapor Center&#8217;s 2022 State of Tech Diversity Report, &#8220;Between 2014 and 2021, the percentage of Black people in technical roles at large technology companies increased by only 1%.&#8221; Diversity Goals to reach a point where it is widely acknowledged that a fair, inclusive and inclusive workplace benefits everyone. This kind of work environment provides space for diverse perspectives, fosters creativity, develops problem-solving skills, and fosters innovation. As a company, we passionately advocate for diversifying our leadership team (representation is key) and expanding our DEI efforts. As the late activist and literary icon Maya Angelou said: And when we know better, we do better.  ”</p>
+<p id="b8f4" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">At Starship, by working as a team and guided by data, we can accomplish more together than we could ever accomplish alone.  As we reflect on the countless barriers and obstacles that BIPOC people have overcome, we are inspired by this resilience and determination to overcome adversity while overcoming every curb, and that we, too, can overcome these challenges. I know. The dedication of our Black colleagues, friends, and family reminds us that with perseverance, we can always achieve our goals and aspirations.</p>
+<p id="a0d8" class="pw-post-body-paragraph lc ld ev le b lf lg lh li lj lk ll lm ln lo lp lq lr ls lt lu lv lw lx ly lz eo bj">In the spirit of progress and innovation, we would like to use this time to remember the purpose of Black History Month through consciously recognizing the historical leaders who have brought us to where we are today. I am. Later this month, Starship will share her highlights of Black contributors in the AI ​​and robotics field, highlighting the outstanding achievements of BIPOC pioneers. Without their outstanding contributions, AI and robotics would not be where it is today.</p>
+</div>
+<p>[ad_2]<br />
+<br /><a href="https://medium.com/starshiptechnologies/in-honor-of-black-history-month-c7d02c3230d6?source=rss----dfecf423e3d---4">Source link </a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/in-honor-of-black-history-month-author-red-nardos-written-by-annie-handrick-starship-technologies/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
